@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random Numbers, Date, and Rounded Number</title>
+</head>
+<body>
+    <h1>Random Numbers, Current Date, and Rounded Number</h1>
+    
+    <!-- Button to generate the values -->
+    <button onclick="generateValues()">Generate Values</button>
+
+    <!-- Display the output -->
+    <p id="randomNumbers"></p>
+    <p id="currentDate"></p>
+    <p id="roundedNumber"></p>
+
+    <script>
+        // Function to generate random set of numbers
+        function generateRandomNumbers(count) {
+            let numbers = [];
+            for (let i = 0; i < count; i++) {
+                numbers.push(Math.floor(Math.random() * 100) + 1); // Math.floor to get integer, Math.random for random number
+            }
+            return numbers;
+        }
+
+        // Function to get current date
+        function getCurrentDate() {
+            const date = new Date();
+            return date.toLocaleString(); // Converts date to readable string
+        }
+
+        // Function to generate a random float and round it
+        function getRoundedRandomNumber() {
+            let randomFloat = Math.random() * 100;
+            return randomFloat.toFixed(2); // Rounds to 2 decimal places
+        }
+
+        // Function to handle the display of all values
+        function generateValues() {
+            let randomNumbers = generateRandomNumbers(5);
+            let currentDate = getCurrentDate();
+            let roundedNumber = getRoundedRandomNumber();
+
+            // Display the results in the HTML
+            document.getElementById('randomNumbers').innerText = "Random set of numbers: " + randomNumbers.join(", ");
+            document.getElementById('currentDate').innerText = "Current date: " + currentDate;
+            document.getElementById('roundedNumber').innerText = "Rounded random number: " + roundedNumber;
+        }
+    </script>
+</body>
+</html>

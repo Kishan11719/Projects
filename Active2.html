@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sum and Trigonometric Values</title>
+</head>
+<body>
+    <h1>Sum of Arguments and Trigonometric Values</h1>
+
+    <!-- Input fields for degrees -->
+    <input type="number" id="degree1" placeholder="Enter first degree">
+    <input type="number" id="degree2" placeholder="Enter second degree">
+    <input type="number" id="degree3" placeholder="Enter third degree">
+
+    <!-- Button to calculate the sum and trigonometric values -->
+    <button onclick="calculateValues()">Calculate Values</button>
+
+    <!-- Display the results -->
+    <p id="sumResult"></p>
+    <p id="trigResult"></p>
+
+    <script>
+        // Function to calculate the sum of arguments
+        function sumOfArguments(...args) {
+            let sum = 0;
+            for (let i = 0; i < args.length; i++) {
+                sum += args[i];  // Add each argument to sum
+            }
+            return sum;
+        }
+
+        // Function to convert degrees to radians
+        function degreesToRadians(degrees) {
+            return degrees * (Math.PI / 180);
+        }
+
+        // Function to handle input values and display the sum and trigonometric values
+        function calculateValues() {
+            // Get the values from the input fields
+            let degree1 = parseFloat(document.getElementById('degree1').value) || 0;
+            let degree2 = parseFloat(document.getElementById('degree2').value) || 0;
+            let degree3 = parseFloat(document.getElementById('degree3').value) || 0;
+
+            // Call the sumOfArguments function with the degree values
+            let sum = sumOfArguments(degree1, degree2, degree3);
+
+            // Convert the degrees to radians and calculate trigonometric values
+            let radians1 = degreesToRadians(degree1);
+            let radians2 = degreesToRadians(degree2);
+            let radians3 = degreesToRadians(degree3);
+
+            let sin1 = Math.sin(radians1).toFixed(4);
+            let cos1 = Math.cos(radians1).toFixed(4);
+            let tan1 = Math.tan(radians1).toFixed(4);
+
+            let sin2 = Math.sin(radians2).toFixed(4);
+            let cos2 = Math.cos(radians2).toFixed(4);
+            let tan2 = Math.tan(radians2).toFixed(4);
+
+            let sin3 = Math.sin(radians3).toFixed(4);
+            let cos3 = Math.cos(radians3).toFixed(4);
+            let tan3 = Math.tan(radians3).toFixed(4);
+
+            // Display the sum and trigonometric values in the HTML
+            document.getElementById('sumResult').innerText = "Sum of arguments (degrees): " + sum;
+            
+            document.getElementById('trigResult').innerHTML = `
+                <strong>Trigonometric values:</strong><br>
+                Degree 1: Sin(${degree1}) = ${sin1}, Cos(${degree1}) = ${cos1}, Tan(${degree1}) = ${tan1}<br>
+                Degree 2: Sin(${degree2}) = ${sin2}, Cos(${degree2}) = ${cos2}, Tan(${degree2}) = ${tan2}<br>
+                Degree 3: Sin(${degree3}) = ${sin3}, Cos(${degree3}) = ${cos3}, Tan(${degree3}) = ${tan3}
+            `;
+        }
+    </script>
+</body>
+</html>

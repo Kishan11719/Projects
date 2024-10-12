@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sum of Arguments and Trigonometric Functions</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        input {
+            margin: 5px 0;
+        }
+        .result {
+            margin-top: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Sum of Arguments and Trigonometric Values</h2>
+    
+    <!-- Input for numbers to sum -->
+    <label for="numbers">Enter numbers to sum (comma separated):</label><br>
+    <input type="text" id="numbers" placeholder="e.g. 10, 20, 30"><br><br>
+
+    <!-- Input for degrees -->
+    <label for="degrees">Enter degrees for trigonometric values:</label><br>
+    <input type="number" id="degrees" placeholder="e.g. 45"><br><br>
+
+    <!-- Button to calculate -->
+    <button onclick="calculate()">Calculate</button>
+
+    <!-- Display results -->
+    <div class="result" id="result"></div>
+
+    <script>
+        function sumOfArguments(numbers) {
+            let args = numbers.split(',').map(Number); // Split input string by comma and convert to numbers
+            return args.reduce((a, b) => a + b, 0); // Sum the numbers
+        }
+
+        function calculateTrigValues(degrees) {
+            let radians = degrees * (Math.PI / 180); // Convert degrees to radians
+            let sinValue = Math.sin(radians).toFixed(4); // Calculate sine
+            let cosValue = Math.cos(radians).toFixed(4); // Calculate cosine
+            let tanValue = Math.tan(radians).toFixed(4); // Calculate tangent
+            return { sinValue, cosValue, tanValue };
+        }
+
+        function calculate() {
+            // Get input values
+            let numbersInput = document.getElementById('numbers').value;
+            let degreesInput = document.getElementById('degrees').value;
+
+            // Calculate sum of arguments
+            let sum = sumOfArguments(numbersInput);
+
+            // Calculate trigonometric values
+            let { sinValue, cosValue, tanValue } = calculateTrigValues(degreesInput);
+
+            // Display the result
+            document.getElementById('result').innerHTML = `
+                <p>Sum of arguments: ${sum}</p>
+                <p>Sine(${degreesInput}°): ${sinValue}</p>
+                <p>Cosine(${degreesInput}°): ${cosValue}</p>
+                <p>Tangent(${degreesInput}°): ${tanValue}</p>
+            `;
+        }
+    </script>
+
+</body>
+</html>
